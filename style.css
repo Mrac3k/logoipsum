@@ -18,6 +18,7 @@ html {
 
 body {
     font-family: dm sans, sans-serif;
+    overflow-x: hidden;
 }
 
 .header {
@@ -27,22 +28,26 @@ body {
     z-index: 999;
     top: 0;
     padding-block: 30px;
+    padding-inline: 20px;
 }
 
 [class*="__container"] {
     max-width: 1069px;
     margin-inline: auto;
+    padding-inline: 20px;
 }
 
 .header__nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .header__list {
     display: flex;
-    gap: 49px;
+    gap: clamp(15px, 3vw, 49px);
     align-items: center;
 }
 
@@ -72,12 +77,13 @@ a {
     color: var(--dark);
 }
 
-.header__button, .hero__button {
+.header__button,
+.hero__button {
     font-weight: 700;
-    font-size: 17px;
+    font-size: clamp(14px, 1.2vw, 17px);
     letter-spacing: -0.53px;
     color: #fff;
-    padding: 19px 59px;
+    padding: 19px clamp(20px, 3vw, 59px);
     border-radius: 10px;
     transition: color 0.3s ease, background-color 0.3s ease, opacity 0.3s ease;
 }
@@ -86,7 +92,8 @@ a {
     background-color: var(--orange);
 }
 
-.header__button:hover, .hero__button:hover {
+.header__button:hover,
+.hero__button:hover {
     opacity: 90%;
 }
 
@@ -95,28 +102,33 @@ main {
 }
 
 .hero {
-    padding-block: 70px;
+    padding-block: clamp(35px, 4.6vw, 70px);
 }
 
 .hero__container {
     position: relative;
+    overflow: hidden;
 }
 
 .hero__content {
+    width: 100%;
     max-width: 423px;
-    padding-block: 92px;
+    padding-block: clamp(46px, 6vw, 92px);
 }
 
 .hero__image {
     position: absolute;
     top: 0;
-    right: -75px;
+    right: 0;
+    width: 55vw;
+    max-width: 600px;
+    height: auto;
 }
 
 .hero__title {
     font-weight: 700;
-    font-size: 80px;
-    line-height: 77px;
+    font-size: clamp(40px, 5vw, 80px);
+    line-height: 1.2;
     letter-spacing: -2.5px;
     color: var(--dark);
 }
@@ -133,7 +145,8 @@ main {
 .hero__buttons {
     margin-top: 50px;
     display: flex;
-    gap: 40px;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .hero__button {
@@ -158,35 +171,41 @@ main {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .features {
-    padding-block: 120px;
+    padding-block: clamp(60px, 8vw, 120px);
 }
 
 .features__container {
     display: flex;
     flex-direction: column;
-    gap: 69px;
+    gap: clamp(35px, 4.6vw, 69px);
 }
 
 .feature {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .feature__content {
+    flex: 1;
     display: flex;
     flex-direction: column;
     gap: 30px;
+    width: 100%;
     max-width: 459px;
 }
 
 .feature__title {
     font-weight: 700;
-    font-size: 50px;
-    line-height: 57px;
+    font-size: clamp(25px, 3.3vw, 50px);
+    line-height: 1.3;
     letter-spacing: -1.56px;
     color: var(--dark);
 }
@@ -197,6 +216,13 @@ main {
     line-height: 30px;
     letter-spacing: -0.63px;
     color: var(--gray);
+}
+
+.feature__image {
+    flex: 1;
+    width: 100%;
+    max-width: 300px;
+    height: auto;
 }
 
 .feature__link {
@@ -217,7 +243,7 @@ main {
 .mini-features__container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 74px;
+    gap: clamp(37px, 4.9vw, 74px);
 }
 
 .mini-feature {
@@ -253,25 +279,26 @@ main {
 }
 
 .subscription {
-    padding-block: 118px 158px;
+    padding-block: clamp(60px, 8vw, 118px) clamp(80px, 10vw, 158px);
 }
 
 .subscription__container {
     display: flex;
     flex-direction: column;
-    gap: 82px;
+    gap: clamp(40px, 5.5vw, 82px);
 }
 
 .subscription__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .subscription__title {
     font-weight: 700;
-    font-size: 60px;
-    line-height: 70px;
+    font-size: clamp(30px, 4vw, 60px);
+    line-height: 1.2;
 }
 
 .subscription__tabs {
@@ -323,14 +350,14 @@ main {
 
 .subscription__plan-price {
     font-weight: 700;
-    font-size: 60px;
+    font-size: clamp(30px, 4vw, 60px);
     letter-spacing: -1.03px;
-    line-height: 56px;
+    line-height: 1.2;
     color: var(--dark);
     margin-top: 22px;
 }
 
-.subscription__plan-price > span {
+.subscription__plan-price>span {
     font-size: 28px;
 }
 
@@ -373,4 +400,103 @@ main {
 
 .subscription__plan.active .subscription__plan-button {
     background: #9F3919;
+}
+
+@media(max-width: 1024px) {
+    .hero__content {
+        max-width: 380px
+    }
+}
+
+@media (max-width: 895px) {
+    .hero__image {
+        z-index: -1;
+    }
+}
+
+@media (max-width: 767px) {
+    .header {
+        padding-block: 15px;
+    }
+
+    .header__nav {
+        row-gap: 15px;
+    }
+
+    .header__list {
+        order: 1;
+        flex-basis: 100%;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .header__button {
+        padding: 12px 20px;
+        font-size: 14px;
+        flex-shrink: 0;
+    }
+
+    .hero__container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .hero__content {
+        max-width: 100%;
+        padding-block: 20px;
+    }
+
+    .hero__title {
+        letter-spacing: -1px;
+    }
+
+    .hero__description {
+        letter-spacing: 0;
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    .hero__image {
+        display: none
+    }
+
+    .companies__list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 15px;
+    }
+
+    .companies__company-logo {
+        height: clamp(20px, 3vw, 30px);
+        width: auto;
+    }
+
+    .feature {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .feature__image {
+        width: 60%;
+        margin: 0 auto;
+    }
+
+    .mini-features__container {
+        grid-template-columns: 1fr;
+    }
+
+    .subscription__header {
+        gap: 15px;
+    }
+
+    .subscription__plans {
+        grid-template-columns: 1fr;
+    }
+
+    .subscription__tab {
+        padding: 12px 30px;
+    }
+
 }
